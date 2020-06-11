@@ -7,15 +7,14 @@ main : Html msg
 main =
     div []
         [ Html.text simple
-
-        --, Html.text (sayHelloTo "Prima")
-        --, div [] (List.map helloSection [ "John", "George", "Paul", "Ringo" ])
-        --, div [] (List.map (div [] << List.singleton << customHello "Hey") [ "John", "George", "Paul", "Ringo" ])
-        --, div []
-        --    ([ "John", "George", "Paul", "Ringo" ]
-        --        |> List.filter (\name -> String.length name > 4)
-        --        |> List.map helloSection
-        --    )
+        , Html.text (sayHelloTo "Prima")
+        , div [] (List.map helloSection [ "John", "George", "Paul", "Ringo" ])
+        , div [] (List.map (div [] << List.singleton << customHello "Hey") [ "John", "George", "Paul", "Ringo" ])
+        , div []
+            ([ "John", "George", "Paul", "Ringo" ]
+                |> List.filter (\name -> String.length name > 4)
+                |> List.map helloSection
+            )
         ]
 
 
@@ -27,8 +26,8 @@ simple =
 
 
 sayHelloTo : String -> String
-sayHelloTo name =
-    "Hello, " ++ name ++ "!"
+sayHelloTo =
+    (++) "Hello, "
 
 
 {-| tacit programming?
@@ -48,6 +47,6 @@ type alias Greeting =
 
 {-| tacit programming? Impossible? maybe with a function?
 -}
-customHello : Greeting -> Name -> Html msg
+customHello : Name -> Greeting -> Html msg
 customHello greeting name =
     Html.text (greeting ++ ", " ++ name ++ "!")

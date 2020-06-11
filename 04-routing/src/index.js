@@ -1,6 +1,6 @@
 import {Elm} from './Main.elm';
 
-Elm.Main.init({
+let app = Elm.Main.init({
     node: document.getElementById('root'),
-    flags: {initialValue: null}
+    flags: {}
 });

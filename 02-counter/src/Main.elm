@@ -5,9 +5,13 @@ import Html exposing (br, button, div, text)
 import Html.Events exposing (onClick)
 
 
-main : Program () Int Msg
+main : Program () Model Msg
 main =
     sandbox { init = initialModel, view = view, update = update }
+
+
+type alias Model =
+    { number : Int }
 
 
 {-| real type, not alias
@@ -17,33 +21,37 @@ main =
 
 -}
 type Msg
-    = Increment
+    = Increment Int
     | Decrement
 
 
-initialModel : Int
+initialModel : Model
 initialModel =
-    0
+    Model 0
 
 
 {-| events
 -}
-view : Int -> Html.Html Msg
+view : Model -> Html.Html Msg
 view model =
     div []
-        [ button [ onClick Increment ] [ text "+" ]
+        [ button [ onClick (Increment 2) ] [ text "+" ]
         , br [] []
-        , text (String.fromInt model)
+        , text (String.fromInt model.number)
         , br [] []
         , button [ onClick Decrement ] [ text "-" ]
         ]
 
 
-update : Msg -> Int -> Int
+update : Msg -> Model -> Model
 update msg model =
     case msg of
-        Increment ->
-            model + 1
+        Increment n ->
+            let
+                newModel =
+                    { model | number = model.number + n }
+            in
+            newModel
 
         Decrement ->
-            model - 1
+            { model | number = model.number - 1 }

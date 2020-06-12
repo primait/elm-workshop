@@ -1,0 +1,3 @@
+[submodule "05-swapi/swapi-graphql"]
+	path = 05-swapi/swapi-graphql
+	url = https://github.com/graphql/swapi-graphql.git
